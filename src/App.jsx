@@ -1,10 +1,13 @@
 import { motion, AnimatePresence, MotionConfig, useScroll, useTransform, animate, useInView, useMotionValue, useMotionValueEvent } from 'motion/react'
 import { useEffect, useRef, useState } from 'react'
 import { KITS, COMPLETA, MATERIAIS, PASSOS, FAQ, PRECO_KIT, PRECO_COMPLETA, LINK_COMPLETA, brl,
-  CHECKLISTS, PRECO_CHECKLISTS, LINK_CHECKLISTS, WHATSAPP, WHATSAPP_MSG, CONTATO_ENDPOINT } from './dados.js'
+  CHECKLISTS, PRECO_CHECKLISTS, LINK_CHECKLISTS, WHATSAPP, WHATSAPP_MSG, WEB3FORMS_KEY, INSTAGRAM } from './dados.js'
 
 const img = (f) => `${import.meta.env.BASE_URL}img/${f}`
 const zap = (msg) => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`
+// sem link real da Cakto (vazio ou '#...'), o botao de compra vira "Em breve"
+const temLink = (l) => /^https?:\/\//.test(l)
+const EmBreve = () => <span className="btn em-breve">Em breve</span>
 const mola = { type: 'spring', stiffness: 260, damping: 22 }
 
 // sobe e aparece quando entra na tela; filhos entram em sequencia
@@ -83,14 +86,18 @@ function Contato({ dlg }) {
   async function enviar(e) {
     e.preventDefault()
     const dados = Object.fromEntries(new FormData(e.target))
-    if (!CONTATO_ENDPOINT) {
+    if (!WEB3FORMS_KEY) {
       window.open(zap(`Olá! Sou ${dados.nome} (${dados.email}, ${dados.telefone}).\n\n${dados.mensagem}`), '_blank', 'noopener')
       return setEstado('ok')
     }
     setEstado('enviando')
     try {
-      const r = await fetch(CONTATO_ENDPOINT, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(e.target) })
-      if (!r.ok) throw new Error(r.status)
+      const corpo = new FormData(e.target)
+      corpo.append('access_key', WEB3FORMS_KEY)
+      corpo.append('subject', `Contato pelo site: ${dados.nome}`)
+      corpo.append('from_name', 'Curiosidades do Anjinho')
+      const r = await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { Accept: 'application/json' }, body: corpo })
+      if (!(await r.json()).success) throw new Error(r.status)
       e.target.reset(); setEstado('ok')
     } catch { setEstado('erro') }
   }
@@ -99,6 +106,7 @@ function Contato({ dlg }) {
       onClick={(e) => e.target === dlg.current && dlg.current.close()}>
       <form onSubmit={enviar}>
         <button type="button" className="fechar" aria-label="Fechar" onClick={() => dlg.current.close()}>×</button>
+        <input type="checkbox" name="botcheck" className="isca" tabIndex={-1} autoComplete="off" aria-hidden="true" />
         <h2>Fale com a gente</h2>
         <p>Dúvida sobre os kits, um tema que seus filhos amam ou uma sugestão. Respondemos rápido.</p>
         <label>Nome<input name="nome" autoFocus required autoComplete="name" maxLength={80} /></label>
@@ -200,7 +208,7 @@ export default function App() {
                   <div className="temas">{k.temas}</div>
                   <div className="rodape">
                     <div className="preco">{brl(PRECO_KIT)}</div>
-                    <motion.a className="btn" href={k.link} whileTap={{ scale: 0.95 }}>Quero este</motion.a>
+                    {temLink(k.link) ? <motion.a className="btn" href={k.link} whileTap={{ scale: 0.95 }}>Quero este</motion.a> : <EmBreve />}
                   </div>
                 </div>
               </motion.article>
@@ -227,9 +235,9 @@ export default function App() {
                 <motion.span className="por" initial={{ scale: 0.6, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }}
                   viewport={{ once: true }} transition={{ type: 'spring', stiffness: 300, damping: 12, delay: 0.4 }}>{brl(PRECO_COMPLETA)}</motion.span>
               </motion.div>
-              <motion.a className="btn btn-ouro" href={LINK_COMPLETA}
+              {temLink(LINK_COMPLETA) ? <motion.a className="btn btn-ouro" href={LINK_COMPLETA}
                 animate={{ scale: [1, 1.04, 1] }} transition={{ duration: 1.8, repeat: Infinity, repeatDelay: 1.2 }}
-                whileTap={{ scale: 0.96 }}>Quero a coleção completa</motion.a>
+                whileTap={{ scale: 0.96 }}>Quero a coleção completa</motion.a> : <EmBreve />}
             </motion.div>
             <motion.img src={img('kit-completo.png')} alt="Arte da Coleção Completa com cartas de Trunfo" loading="lazy"
               initial={{ rotate: 8, x: 40, opacity: 0 }} whileInView={{ rotate: 2, x: 0, opacity: 1 }}
@@ -249,7 +257,7 @@ export default function App() {
               <motion.p className="obs" variants={item}><b>{CHECKLISTS.itens.length} checklists</b> em versão menino e menina. Imprima, cole na porta do quarto ou plastifique e use caneta de quadro branco. Novos modelos entram sempre, e você recebe sem pagar de novo.</motion.p>
               <motion.div className="rodape" variants={item}>
                 <div className="preco">{brl(PRECO_CHECKLISTS)}</div>
-                <motion.a className="btn btn-roxo" href={LINK_CHECKLISTS} whileTap={{ scale: 0.96 }}>Quero os checklists</motion.a>
+                {temLink(LINK_CHECKLISTS) ? <motion.a className="btn btn-roxo" href={LINK_CHECKLISTS} whileTap={{ scale: 0.96 }}>Quero os checklists</motion.a> : <EmBreve />}
               </motion.div>
             </motion.div>
             <motion.div className="folhas" variants={grupo} {...naTela}>
@@ -277,10 +285,11 @@ export default function App() {
           <motion.h2 variants={item}>Hoje à noite pode ter uma rodada de Trunfo na sua casa</motion.h2>
           <motion.p variants={item}>Escolha um kit, imprima e chame as crianças para jogar.</motion.p>
           <motion.a className="btn btn-ouro" href="#kits" variants={item} whileTap={{ scale: 0.96 }}>Ver os kits</motion.a>
+          <motion.p className="siga" variants={item}>Ideias de brincadeiras e novidades no Instagram: <a className="insta" href={`https://www.instagram.com/${INSTAGRAM}/`} target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4ZM17.3 5.5a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4ZM12 2c-2.7 0-3 0-4.1.1-1 0-1.8.2-2.4.5-.7.3-1.2.6-1.8 1.2S2.8 5 2.6 5.6c-.3.6-.4 1.4-.5 2.4C2 9 2 9.3 2 12s0 3 .1 4.1c0 1 .2 1.8.5 2.4.3.7.6 1.2 1.2 1.8s1.1.9 1.8 1.2c.6.3 1.4.4 2.4.5 1 .1 1.4.1 4.1.1s3 0 4.1-.1c1 0 1.8-.2 2.4-.5.7-.3 1.2-.6 1.8-1.2s.9-1.1 1.2-1.8c.3-.6.4-1.4.5-2.4.1-1 .1-1.4.1-4.1s0-3-.1-4.1c0-1-.2-1.8-.5-2.4-.3-.7-.6-1.2-1.2-1.8S19 2.8 18.4 2.6c-.6-.3-1.4-.4-2.4-.5C15 2 14.7 2 12 2Zm0 1.8c2.7 0 3 0 4 .1.9 0 1.5.2 1.8.3.5.2.8.4 1.1.7.4.4.6.7.7 1.1.1.3.3.9.3 1.8.1 1 .1 1.4.1 4s0 3-.1 4c0 .9-.2 1.5-.3 1.8-.2.5-.4.8-.7 1.1-.4.4-.7.6-1.1.7-.3.1-.9.3-1.8.3-1 .1-1.4.1-4 .1s-3 0-4-.1c-.9 0-1.5-.2-1.8-.3-.5-.2-.8-.4-1.1-.7-.4-.4-.6-.7-.7-1.1-.1-.3-.3-.9-.3-1.8-.1-1-.1-1.4-.1-4s0-3 .1-4c0-.9.2-1.5.3-1.8.2-.5.4-.8.7-1.1.4-.4.7-.6 1.1-.7.3-.1.9-.3 1.8-.3 1-.1 1.4-.1 4-.1Z"/></svg>@{INSTAGRAM}</a></motion.p>
         </motion.div>
       </section>
 
-      <footer>Curiosidades do Anjinho · Jogos e atividades para imprimir · a partir de 6 anos · <a href="#contato" onClick={abrirContato}>Fale com a gente</a></footer>
+      <footer>Curiosidades do Anjinho · Jogos e atividades para imprimir · a partir de 6 anos · <a href="#contato" onClick={abrirContato}>Fale com a gente</a> · <a className="insta" href={`https://www.instagram.com/${INSTAGRAM}/`} target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4ZM17.3 5.5a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4ZM12 2c-2.7 0-3 0-4.1.1-1 0-1.8.2-2.4.5-.7.3-1.2.6-1.8 1.2S2.8 5 2.6 5.6c-.3.6-.4 1.4-.5 2.4C2 9 2 9.3 2 12s0 3 .1 4.1c0 1 .2 1.8.5 2.4.3.7.6 1.2 1.2 1.8s1.1.9 1.8 1.2c.6.3 1.4.4 2.4.5 1 .1 1.4.1 4.1.1s3 0 4.1-.1c1 0 1.8-.2 2.4-.5.7-.3 1.2-.6 1.8-1.2s.9-1.1 1.2-1.8c.3-.6.4-1.4.5-2.4.1-1 .1-1.4.1-4.1s0-3-.1-4.1c0-1-.2-1.8-.5-2.4-.3-.7-.6-1.2-1.2-1.8S19 2.8 18.4 2.6c-.6-.3-1.4-.4-2.4-.5C15 2 14.7 2 12 2Zm0 1.8c2.7 0 3 0 4 .1.9 0 1.5.2 1.8.3.5.2.8.4 1.1.7.4.4.6.7.7 1.1.1.3.3.9.3 1.8.1 1 .1 1.4.1 4s0 3-.1 4c0 .9-.2 1.5-.3 1.8-.2.5-.4.8-.7 1.1-.4.4-.7.6-1.1.7-.3.1-.9.3-1.8.3-1 .1-1.4.1-4 .1s-3 0-4-.1c-.9 0-1.5-.2-1.8-.3-.5-.2-.8-.4-1.1-.7-.4-.4-.6-.7-.7-1.1-.1-.3-.3-.9-.3-1.8-.1-1-.1-1.4-.1-4s0-3 .1-4c0-.9.2-1.5.3-1.8.2-.5.4-.8.7-1.1.4-.4.7-.6 1.1-.7.3-.1.9-.3 1.8-.3 1-.1 1.4-.1 4-.1Z"/></svg>@{INSTAGRAM}</a></footer>
 
       <motion.a className="zap" href={zap(WHATSAPP_MSG)} target="_blank" rel="noopener" aria-label="Conversar no WhatsApp"
         initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ ...mola, delay: 1.2 }}

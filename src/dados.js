@@ -2,26 +2,28 @@
 export const PRECO_KIT = 9.90         // preco de cada kit tematico, em reais
 export const PRECO_COMPLETA = 60      // preco da Colecao Completa, em reais
 
-// links de checkout da Cakto (troque os '#cakto-...' pelos links reais)
-export const LINK_DINOSSAUROS = '#cakto-dinossauros'
-export const LINK_FUNDO_DO_MAR = '#cakto-fundo-do-mar'
-export const LINK_BICHOS = '#cakto-bichos'
-export const LINK_VEICULOS = '#cakto-veiculos'
-export const LINK_CIENCIA = '#cakto-ciencia'
-export const LINK_MUNDO = '#cakto-mundo'
-export const LINK_BRASIL = '#cakto-brasil'
-export const LINK_MITOLOGIA = '#cakto-mitologia'
-export const LINK_COMPLETA = '#cakto-completo'
+// links de checkout da Cakto (https://...). Vazio = botao "Em breve" no lugar do botao de compra
+export const LINK_DINOSSAUROS = ''
+export const LINK_FUNDO_DO_MAR = ''
+export const LINK_BICHOS = ''
+export const LINK_VEICULOS = ''
+export const LINK_CIENCIA = ''
+export const LINK_MUNDO = ''
+export const LINK_BRASIL = ''
+export const LINK_MITOLOGIA = ''
+export const LINK_COMPLETA = ''
 
 // checklists de rotina e organizacao
 export const PRECO_CHECKLISTS = 9.90  // preco do kit de checklists, em reais
-export const LINK_CHECKLISTS = '#cakto-checklists'
+export const LINK_CHECKLISTS = ''
 
 // contato
-export const WHATSAPP = '5500000000000'  // DDI + DDD + numero, so digitos (ex.: 5511999998888)
+export const WHATSAPP = '5549988198409'  // DDI + DDD + numero, so digitos (ex.: 5511999998888)
+export const INSTAGRAM = 'curiosidades.do.anjinho'  // usuario do Instagram, sem @
 export const WHATSAPP_MSG = 'Olá! Vim pelo site Curiosidades do Anjinho e quero saber mais sobre os kits.'
-// endereco que recebe o formulario (ex.: https://formspree.io/f/xxxx). Vazio = o formulario abre o WhatsApp com a mensagem.
-export const CONTATO_ENDPOINT = ''
+// chave de acesso do Web3Forms (web3forms.com): as mensagens do formulario chegam no e-mail cadastrado nela.
+// E publica por natureza (fica no HTML). Vazio = o formulario abre o WhatsApp com a mensagem.
+export const WEB3FORMS_KEY = 'f4bf7a1b-e8eb-443b-9761-b91c024ffcf6'
 // =================================================
 
 export const brl = (v) => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: Number.isInteger(v) ? 0 : 2 })

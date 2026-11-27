@@ -108,6 +108,9 @@ section.bloco{padding:84px 0}
 .oferta .btn-ouro{position:relative;overflow:hidden}
 .oferta .btn-ouro:after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.7) 50%,transparent 70%);transform:translateX(-120%);animation:reflexo 3.2s ease-in-out infinite}
 
+.btn.em-breve,.kit .btn.em-breve{background:transparent;color:inherit;box-shadow:none;border:2px dashed currentColor;opacity:.75;cursor:default;font-family:"Mono",monospace;font-weight:400;letter-spacing:.12em;text-transform:uppercase;font-size:13px}
+.btn.em-breve:hover{transform:none}
+
 /* fundo em movimento: manchas de luz desfocadas */
 .aurora{position:absolute;inset:0;overflow:hidden;pointer-events:none}
 .aurora i{position:absolute;width:46vw;height:46vw;max-width:620px;max-height:620px;border-radius:50%;filter:blur(70px);opacity:.55;mix-blend-mode:screen}
@@ -144,6 +147,8 @@ section.bloco{padding:84px 0}
 
 /* contato */
 footer a{color:var(--ouro)}
+.insta{display:inline-flex;align-items:center;gap:6px;font-weight:700;color:var(--ouro);text-underline-offset:3px}
+.fim .siga{margin:26px auto 0;font-size:15px}
 .contato{border:0;border-radius:24px;padding:0;width:min(480px,calc(100% - 32px));max-height:calc(100dvh - 32px);background:var(--creme-2);color:var(--tinta);box-shadow:0 30px 60px rgba(0,0,0,.35)}
 .contato[open]{animation:surge .35s cubic-bezier(.22,1,.36,1)}
 .contato::backdrop{background:rgba(26,18,48,.6);backdrop-filter:blur(3px)}
@@ -155,6 +160,7 @@ footer a{color:var(--ouro)}
 .contato input:focus,.contato textarea:focus{outline:none;border-color:var(--roxo);box-shadow:0 0 0 3px rgba(95,61,196,.2)}
 .contato .btn{border:0;cursor:pointer;font:inherit;font-weight:900;font-size:16px;margin-top:4px}
 .contato .btn:disabled{opacity:.6;cursor:wait}
+.contato .isca{display:none}
 .contato .aviso{min-height:1.4em;text-align:center;font-weight:700;color:var(--roxo)}
 .fechar{all:unset;position:absolute;right:14px;top:10px;font-size:32px;line-height:1;cursor:pointer;color:var(--suave);padding:4px 8px;border-radius:8px}
 .fechar:focus-visible{outline:3px solid var(--roxo)}
@@ -209,5 +215,6 @@ footer{background:#1a1230;color:rgba(244,234,213,.85);text-align:center;font-siz
   .chk p{font-size:16px}
   .folhas{gap:12px}
   .zap{width:54px;height:54px;right:16px;bottom:16px}
+  footer{padding-bottom:90px}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,.topo{transition:none}.aurora i,.oferta,.oferta .btn-ouro:after,.brilho,.zap:before,.contato[open]{animation:none}}
