@@ -108,6 +108,9 @@ section.bloco{padding:84px 0}
 .oferta .btn-ouro{position:relative;overflow:hidden}
 .oferta .btn-ouro:after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.7) 50%,transparent 70%);transform:translateX(-120%);animation:reflexo 3.2s ease-in-out infinite}
 
+.btn.em-breve,.kit .btn.em-breve{background:transparent;color:inherit;box-shadow:none;border:2px dashed currentColor;opacity:.75;cursor:default;font-family:"Mono",monospace;font-weight:400;letter-spacing:.12em;text-transform:uppercase;font-size:13px}
+.btn.em-breve:hover{transform:none}
+
 /* fundo em movimento: manchas de luz desfocadas */
 .aurora{position:absolute;inset:0;overflow:hidden;pointer-events:none}
 .aurora i{position:absolute;width:46vw;height:46vw;max-width:620px;max-height:620px;border-radius:50%;filter:blur(70px);opacity:.55;mix-blend-mode:screen}
