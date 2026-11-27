@@ -1,7 +1,7 @@
 import { motion, AnimatePresence, MotionConfig, useScroll, useTransform, animate, useInView, useMotionValue, useMotionValueEvent } from 'motion/react'
 import { useEffect, useRef, useState } from 'react'
 import { KITS, COMPLETA, MATERIAIS, PASSOS, FAQ, PRECO_KIT, PRECO_COMPLETA, LINK_COMPLETA, brl,
-  CHECKLISTS, PRECO_CHECKLISTS, LINK_CHECKLISTS, WHATSAPP, WHATSAPP_MSG, CONTATO_ENDPOINT } from './dados.js'
+  CHECKLISTS, PRECO_CHECKLISTS, LINK_CHECKLISTS, WHATSAPP, WHATSAPP_MSG, WEB3FORMS_KEY } from './dados.js'
 
 const img = (f) => `${import.meta.env.BASE_URL}img/${f}`
 const zap = (msg) => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`
@@ -83,14 +83,18 @@ function Contato({ dlg }) {
   async function enviar(e) {
     e.preventDefault()
     const dados = Object.fromEntries(new FormData(e.target))
-    if (!CONTATO_ENDPOINT) {
+    if (!WEB3FORMS_KEY) {
       window.open(zap(`Olá! Sou ${dados.nome} (${dados.email}, ${dados.telefone}).\n\n${dados.mensagem}`), '_blank', 'noopener')
       return setEstado('ok')
     }
     setEstado('enviando')
     try {
-      const r = await fetch(CONTATO_ENDPOINT, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(e.target) })
-      if (!r.ok) throw new Error(r.status)
+      const corpo = new FormData(e.target)
+      corpo.append('access_key', WEB3FORMS_KEY)
+      corpo.append('subject', `Contato pelo site: ${dados.nome}`)
+      corpo.append('from_name', 'Curiosidades do Anjinho')
+      const r = await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { Accept: 'application/json' }, body: corpo })
+      if (!(await r.json()).success) throw new Error(r.status)
       e.target.reset(); setEstado('ok')
     } catch { setEstado('erro') }
   }
@@ -99,6 +103,7 @@ function Contato({ dlg }) {
       onClick={(e) => e.target === dlg.current && dlg.current.close()}>
       <form onSubmit={enviar}>
         <button type="button" className="fechar" aria-label="Fechar" onClick={() => dlg.current.close()}>×</button>
+        <input type="checkbox" name="botcheck" className="isca" tabIndex={-1} autoComplete="off" aria-hidden="true" />
         <h2>Fale com a gente</h2>
         <p>Dúvida sobre os kits, um tema que seus filhos amam ou uma sugestão. Respondemos rápido.</p>
         <label>Nome<input name="nome" autoFocus required autoComplete="name" maxLength={80} /></label>
