@@ -5,6 +5,9 @@ import { KITS, COMPLETA, MATERIAIS, PASSOS, FAQ, PRECO_KIT, PRECO_COMPLETA, LINK
 
 const img = (f) => `${import.meta.env.BASE_URL}img/${f}`
 const zap = (msg) => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`
+// sem link real da Cakto (vazio ou '#...'), o botao de compra vira "Em breve"
+const temLink = (l) => /^https?:\/\//.test(l)
+const EmBreve = () => <span className="btn em-breve">Em breve</span>
 const mola = { type: 'spring', stiffness: 260, damping: 22 }
 
 // sobe e aparece quando entra na tela; filhos entram em sequencia
@@ -200,7 +203,7 @@ export default function App() {
                   <div className="temas">{k.temas}</div>
                   <div className="rodape">
                     <div className="preco">{brl(PRECO_KIT)}</div>
-                    <motion.a className="btn" href={k.link} whileTap={{ scale: 0.95 }}>Quero este</motion.a>
+                    {temLink(k.link) ? <motion.a className="btn" href={k.link} whileTap={{ scale: 0.95 }}>Quero este</motion.a> : <EmBreve />}
                   </div>
                 </div>
               </motion.article>
@@ -227,9 +230,9 @@ export default function App() {
                 <motion.span className="por" initial={{ scale: 0.6, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }}
                   viewport={{ once: true }} transition={{ type: 'spring', stiffness: 300, damping: 12, delay: 0.4 }}>{brl(PRECO_COMPLETA)}</motion.span>
               </motion.div>
-              <motion.a className="btn btn-ouro" href={LINK_COMPLETA}
+              {temLink(LINK_COMPLETA) ? <motion.a className="btn btn-ouro" href={LINK_COMPLETA}
                 animate={{ scale: [1, 1.04, 1] }} transition={{ duration: 1.8, repeat: Infinity, repeatDelay: 1.2 }}
-                whileTap={{ scale: 0.96 }}>Quero a coleção completa</motion.a>
+                whileTap={{ scale: 0.96 }}>Quero a coleção completa</motion.a> : <EmBreve />}
             </motion.div>
             <motion.img src={img('kit-completo.png')} alt="Arte da Coleção Completa com cartas de Trunfo" loading="lazy"
               initial={{ rotate: 8, x: 40, opacity: 0 }} whileInView={{ rotate: 2, x: 0, opacity: 1 }}
@@ -249,7 +252,7 @@ export default function App() {
               <motion.p className="obs" variants={item}><b>{CHECKLISTS.itens.length} checklists</b> em versão menino e menina. Imprima, cole na porta do quarto ou plastifique e use caneta de quadro branco. Novos modelos entram sempre, e você recebe sem pagar de novo.</motion.p>
               <motion.div className="rodape" variants={item}>
                 <div className="preco">{brl(PRECO_CHECKLISTS)}</div>
-                <motion.a className="btn btn-roxo" href={LINK_CHECKLISTS} whileTap={{ scale: 0.96 }}>Quero os checklists</motion.a>
+                {temLink(LINK_CHECKLISTS) ? <motion.a className="btn btn-roxo" href={LINK_CHECKLISTS} whileTap={{ scale: 0.96 }}>Quero os checklists</motion.a> : <EmBreve />}
               </motion.div>
             </motion.div>
             <motion.div className="folhas" variants={grupo} {...naTela}>
