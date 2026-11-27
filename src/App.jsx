@@ -1,13 +1,14 @@
 import { motion, AnimatePresence, MotionConfig, useScroll, useTransform, animate, useInView, useMotionValue, useMotionValueEvent } from 'motion/react'
 import { useEffect, useRef, useState } from 'react'
 import { KITS, COMPLETA, MATERIAIS, PASSOS, FAQ, PRECO_KIT, PRECO_COMPLETA, LINK_COMPLETA, brl,
-  CHECKLISTS, PRECO_CHECKLISTS, LINK_CHECKLISTS, WHATSAPP, WHATSAPP_MSG, WEB3FORMS_KEY, INSTAGRAM } from './dados.js'
+  CHECKLISTS, PRECO_CHECKLISTS, PRECO_PACOTE_CHK, LINK_CHECKLISTS, WHATSAPP, WHATSAPP_MSG, WEB3FORMS_KEY, INSTAGRAM } from './dados.js'
 
 const img = (f) => `${import.meta.env.BASE_URL}img/${f}`
 const zap = (msg) => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`
 // sem link real da Cakto (vazio ou '#...'), o botao de compra vira "Em breve"
 const temLink = (l) => /^https?:\/\//.test(l)
 const EmBreve = () => <span className="btn em-breve">Em breve</span>
+const totalChk = CHECKLISTS.pacotes.reduce((n, p) => n + p.itens.length, 0)
 const mola = { type: 'spring', stiffness: 260, damping: 22 }
 
 // sobe e aparece quando entra na tela; filhos entram em sequencia
@@ -250,14 +251,18 @@ export default function App() {
         <div className="wrap">
           <div className="chk">
             <motion.div variants={grupo} {...naTela}>
-              <motion.div className="rotulo" variants={item}>Rotina e organização</motion.div>
+              <motion.div className="rotulo" variants={item}>Checklists de rotina</motion.div>
               <motion.h2 variants={item}>Checklists para a rotina dele e dela</motion.h2>
-              <motion.p variants={item}>Menos briga para sair de casa. Cada passo tem um desenho, e a criança marca sozinha o que já fez. Assim ela ganha autonomia, e você não precisa repetir a mesma coisa toda manhã.</motion.p>
-              <motion.ul className="tags" variants={item}>{CHECKLISTS.itens.map((t) => <li key={t}>{t}</li>)}</motion.ul>
-              <motion.p className="obs" variants={item}><b>{CHECKLISTS.itens.length} checklists</b> em versão menino e menina. Imprima, cole na porta do quarto ou plastifique e use caneta de quadro branco. Novos modelos entram sempre, e você recebe sem pagar de novo.</motion.p>
-              <motion.div className="rodape" variants={item}>
+              <motion.p variants={item}>Menos briga para sair de casa. Cada passo tem um desenho, e a criança marca sozinha o que já fez. Tem checklist para a escola, para o esporte, para viajar e para os hábitos do dia a dia. Assim as crianças ganham autonomia, e você não precisa repetir a mesma coisa toda hora.</motion.p>
+              <motion.p className="obs" variants={item}><b>{totalChk} checklists</b> em versão menino e menina, em 4 pacotes de {brl(PRECO_PACOTE_CHK)}. Imprima, cole na porta do quarto ou plastifique e use caneta de quadro branco. Novos modelos entram sempre, e quem comprou recebe sem pagar de novo.</motion.p>
+              <motion.div className="completo" variants={item}>
+                <div>
+                  <b>Checklists Completo</b>
+                  <span>Os {totalChk} checklists dos 4 pacotes</span>
+                  <span className="de">{brl(CHECKLISTS.pacotes.length * PRECO_PACOTE_CHK)} nos pacotes separados</span>
+                </div>
                 <div className="preco">{brl(PRECO_CHECKLISTS)}</div>
-                {temLink(LINK_CHECKLISTS) ? <motion.a className="btn btn-roxo" href={LINK_CHECKLISTS} whileTap={{ scale: 0.96 }}>Quero os checklists</motion.a> : <EmBreve />}
+                {temLink(LINK_CHECKLISTS) ? <motion.a className="btn btn-roxo" href={LINK_CHECKLISTS} whileTap={{ scale: 0.96 }}>Quero todos</motion.a> : <EmBreve />}
               </motion.div>
             </motion.div>
             <motion.div className="folhas" variants={grupo} {...naTela}>
@@ -267,6 +272,23 @@ export default function App() {
               ))}
             </motion.div>
           </div>
+          <motion.div className="kits pacotes" variants={grupo} {...naTela}>
+            {CHECKLISTS.pacotes.map((p) => (
+              <motion.article className="kit" key={p.id} style={{ '--c': p.cor }} variants={item}
+                whileHover={{ y: -8, boxShadow: '0 18px 30px rgba(31,26,46,.16)' }} transition={mola}>
+                <div className="capa"><img src={img(`kit-chk-${p.id}.png`)} alt={`Arte do pacote ${p.titulo}`} loading="lazy" /></div>
+                <div className="corpo">
+                  <h3>{p.titulo}</h3>
+                  <div className="nums"><b>{p.itens.length}</b> checklists</div>
+                  <div className="temas">{p.itens.join(', ')}.</div>
+                  <div className="rodape">
+                    <div className="preco">{brl(PRECO_PACOTE_CHK)}</div>
+                    {temLink(p.link) ? <motion.a className="btn" href={p.link} whileTap={{ scale: 0.95 }}>Quero este</motion.a> : <EmBreve />}
+                  </div>
+                </div>
+              </motion.article>
+            ))}
+          </motion.div>
         </div>
       </section>
 

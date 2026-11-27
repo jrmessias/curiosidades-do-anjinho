@@ -136,6 +136,14 @@ section.bloco{padding:84px 0}
 .chk .tags li{background:#fff;border:1px solid #e3d6f5;border-radius:999px;padding:5px 13px;font-size:14px;font-weight:700;color:var(--roxo-esc)}
 .chk .obs{font-size:15px}
 .chk .rodape{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.chk .completo{display:flex;align-items:center;gap:18px;flex-wrap:wrap;background:#fff;border:2px solid #e3d6f5;border-radius:18px;padding:16px 18px}
+.chk .completo>div:first-child{display:flex;flex-direction:column;flex:1;min-width:180px}
+.chk .completo b{font-size:19px;color:var(--roxo-esc)}
+.chk .completo span{font-size:14px;color:var(--suave)}
+.chk .completo .de{text-decoration:line-through}
+.pacotes{margin-top:44px}
+.pacotes .kit .capa{aspect-ratio:16/9}
+.pacotes .kit .capa img{object-position:50% 50%}
 .folhas{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .folhas img{position:relative;border-radius:10px;background:#fff;box-shadow:0 14px 28px rgba(31,26,46,.18)}
 
@@ -217,4 +225,5 @@ footer{background:#1a1230;color:rgba(244,234,213,.85);text-align:center;font-siz
   .zap{width:54px;height:54px;right:16px;bottom:16px}
   footer{padding-bottom:90px}
 }
+@media (max-width:760px){.pacotes .kit{flex-direction:column;border-left:0;border-top:6px solid var(--c)}.pacotes .kit .capa{width:auto}.pacotes .kit .temas{display:block}.pacotes .kit .rodape{flex-direction:row;align-items:center}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,.topo{transition:none}.aurora i,.oferta,.oferta .btn-ouro:after,.brilho,.zap:before,.contato[open]{animation:none}}
