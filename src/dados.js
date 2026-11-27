@@ -20,8 +20,9 @@ export const LINK_CHECKLISTS = ''
 // contato
 export const WHATSAPP = '5500000000000'  // DDI + DDD + numero, so digitos (ex.: 5511999998888)
 export const WHATSAPP_MSG = 'Olá! Vim pelo site Curiosidades do Anjinho e quero saber mais sobre os kits.'
-// endereco que recebe o formulario (ex.: https://formspree.io/f/xxxx). Vazio = o formulario abre o WhatsApp com a mensagem.
-export const CONTATO_ENDPOINT = ''
+// chave de acesso do Web3Forms (web3forms.com): as mensagens do formulario chegam no e-mail cadastrado nela.
+// E publica por natureza (fica no HTML). Vazio = o formulario abre o WhatsApp com a mensagem.
+export const WEB3FORMS_KEY = 'f4bf7a1b-e8eb-443b-9761-b91c024ffcf6'
 // =================================================
 
 export const brl = (v) => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: Number.isInteger(v) ? 0 : 2 })
