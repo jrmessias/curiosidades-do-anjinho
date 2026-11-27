@@ -1,7 +1,7 @@
 import { motion, AnimatePresence, MotionConfig, useScroll, useTransform, animate, useInView, useMotionValue, useMotionValueEvent } from 'motion/react'
 import { useEffect, useRef, useState } from 'react'
 import { KITS, COMPLETA, MATERIAIS, PASSOS, FAQ, PRECO_KIT, PRECO_COMPLETA, LINK_COMPLETA, brl,
-  CHECKLISTS, PRECO_CHECKLISTS, LINK_CHECKLISTS, WHATSAPP, WHATSAPP_MSG, WEB3FORMS_KEY } from './dados.js'
+  CHECKLISTS, PRECO_CHECKLISTS, LINK_CHECKLISTS, WHATSAPP, WHATSAPP_MSG, WEB3FORMS_KEY, INSTAGRAM } from './dados.js'
 
 const img = (f) => `${import.meta.env.BASE_URL}img/${f}`
 const zap = (msg) => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`
@@ -285,10 +285,11 @@ export default function App() {
           <motion.h2 variants={item}>Hoje à noite pode ter uma rodada de Trunfo na sua casa</motion.h2>
           <motion.p variants={item}>Escolha um kit, imprima e chame as crianças para jogar.</motion.p>
           <motion.a className="btn btn-ouro" href="#kits" variants={item} whileTap={{ scale: 0.96 }}>Ver os kits</motion.a>
+          <motion.p className="siga" variants={item}>Ideias de brincadeiras e novidades no Instagram: <a className="insta" href={`https://www.instagram.com/${INSTAGRAM}/`} target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4ZM17.3 5.5a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4ZM12 2c-2.7 0-3 0-4.1.1-1 0-1.8.2-2.4.5-.7.3-1.2.6-1.8 1.2S2.8 5 2.6 5.6c-.3.6-.4 1.4-.5 2.4C2 9 2 9.3 2 12s0 3 .1 4.1c0 1 .2 1.8.5 2.4.3.7.6 1.2 1.2 1.8s1.1.9 1.8 1.2c.6.3 1.4.4 2.4.5 1 .1 1.4.1 4.1.1s3 0 4.1-.1c1 0 1.8-.2 2.4-.5.7-.3 1.2-.6 1.8-1.2s.9-1.1 1.2-1.8c.3-.6.4-1.4.5-2.4.1-1 .1-1.4.1-4.1s0-3-.1-4.1c0-1-.2-1.8-.5-2.4-.3-.7-.6-1.2-1.2-1.8S19 2.8 18.4 2.6c-.6-.3-1.4-.4-2.4-.5C15 2 14.7 2 12 2Zm0 1.8c2.7 0 3 0 4 .1.9 0 1.5.2 1.8.3.5.2.8.4 1.1.7.4.4.6.7.7 1.1.1.3.3.9.3 1.8.1 1 .1 1.4.1 4s0 3-.1 4c0 .9-.2 1.5-.3 1.8-.2.5-.4.8-.7 1.1-.4.4-.7.6-1.1.7-.3.1-.9.3-1.8.3-1 .1-1.4.1-4 .1s-3 0-4-.1c-.9 0-1.5-.2-1.8-.3-.5-.2-.8-.4-1.1-.7-.4-.4-.6-.7-.7-1.1-.1-.3-.3-.9-.3-1.8-.1-1-.1-1.4-.1-4s0-3 .1-4c0-.9.2-1.5.3-1.8.2-.5.4-.8.7-1.1.4-.4.7-.6 1.1-.7.3-.1.9-.3 1.8-.3 1-.1 1.4-.1 4-.1Z"/></svg>@{INSTAGRAM}</a></motion.p>
         </motion.div>
       </section>
 
-      <footer>Curiosidades do Anjinho · Jogos e atividades para imprimir · a partir de 6 anos · <a href="#contato" onClick={abrirContato}>Fale com a gente</a></footer>
+      <footer>Curiosidades do Anjinho · Jogos e atividades para imprimir · a partir de 6 anos · <a href="#contato" onClick={abrirContato}>Fale com a gente</a> · <a className="insta" href={`https://www.instagram.com/${INSTAGRAM}/`} target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4ZM17.3 5.5a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4ZM12 2c-2.7 0-3 0-4.1.1-1 0-1.8.2-2.4.5-.7.3-1.2.6-1.8 1.2S2.8 5 2.6 5.6c-.3.6-.4 1.4-.5 2.4C2 9 2 9.3 2 12s0 3 .1 4.1c0 1 .2 1.8.5 2.4.3.7.6 1.2 1.2 1.8s1.1.9 1.8 1.2c.6.3 1.4.4 2.4.5 1 .1 1.4.1 4.1.1s3 0 4.1-.1c1 0 1.8-.2 2.4-.5.7-.3 1.2-.6 1.8-1.2s.9-1.1 1.2-1.8c.3-.6.4-1.4.5-2.4.1-1 .1-1.4.1-4.1s0-3-.1-4.1c0-1-.2-1.8-.5-2.4-.3-.7-.6-1.2-1.2-1.8S19 2.8 18.4 2.6c-.6-.3-1.4-.4-2.4-.5C15 2 14.7 2 12 2Zm0 1.8c2.7 0 3 0 4 .1.9 0 1.5.2 1.8.3.5.2.8.4 1.1.7.4.4.6.7.7 1.1.1.3.3.9.3 1.8.1 1 .1 1.4.1 4s0 3-.1 4c0 .9-.2 1.5-.3 1.8-.2.5-.4.8-.7 1.1-.4.4-.7.6-1.1.7-.3.1-.9.3-1.8.3-1 .1-1.4.1-4 .1s-3 0-4-.1c-.9 0-1.5-.2-1.8-.3-.5-.2-.8-.4-1.1-.7-.4-.4-.6-.7-.7-1.1-.1-.3-.3-.9-.3-1.8-.1-1-.1-1.4-.1-4s0-3 .1-4c0-.9.2-1.5.3-1.8.2-.5.4-.8.7-1.1.4-.4.7-.6 1.1-.7.3-.1.9-.3 1.8-.3 1-.1 1.4-.1 4-.1Z"/></svg>@{INSTAGRAM}</a></footer>
 
       <motion.a className="zap" href={zap(WHATSAPP_MSG)} target="_blank" rel="noopener" aria-label="Conversar no WhatsApp"
         initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ ...mola, delay: 1.2 }}

@@ -19,6 +19,7 @@ export const LINK_CHECKLISTS = ''
 
 // contato
 export const WHATSAPP = '5549988198409'  // DDI + DDD + numero, so digitos (ex.: 5511999998888)
+export const INSTAGRAM = 'curiosidades.do.anjinho'  // usuario do Instagram, sem @
 export const WHATSAPP_MSG = 'Olá! Vim pelo site Curiosidades do Anjinho e quero saber mais sobre os kits.'
 // chave de acesso do Web3Forms (web3forms.com): as mensagens do formulario chegam no e-mail cadastrado nela.
 // E publica por natureza (fica no HTML). Vazio = o formulario abre o WhatsApp com a mensagem.
