@@ -3,19 +3,19 @@ export const PRECO_KIT = 9.90         // preco de cada kit tematico, em reais
 export const PRECO_COMPLETA = 60      // preco da Colecao Completa, em reais
 
 // links de checkout da Cakto (https://...). Vazio = botao "Em breve" no lugar do botao de compra
-export const LINK_DINOSSAUROS = ''
-export const LINK_FUNDO_DO_MAR = ''
-export const LINK_BICHOS = ''
-export const LINK_VEICULOS = ''
-export const LINK_CIENCIA = ''
-export const LINK_MUNDO = ''
-export const LINK_BRASIL = ''
-export const LINK_MITOLOGIA = ''
-export const LINK_COMPLETA = ''
+export const LINK_DINOSSAUROS = 'https://pay.cakto.com.br/36emq5u_1380389'
+export const LINK_FUNDO_DO_MAR = 'https://pay.cakto.com.br/cxw3a3n_1380401'
+export const LINK_BICHOS = 'https://pay.cakto.com.br/ysvaa64_1380408'
+export const LINK_VEICULOS = 'https://pay.cakto.com.br/t4eprix_1380412'
+export const LINK_CIENCIA = 'https://pay.cakto.com.br/34snswt_1380420'
+export const LINK_MUNDO = 'https://pay.cakto.com.br/36sehhw_1380423'
+export const LINK_BRASIL = 'https://pay.cakto.com.br/36fipda_1380426'
+export const LINK_MITOLOGIA = 'https://pay.cakto.com.br/vir8rtw_1380428'
+export const LINK_COMPLETA = 'https://pay.cakto.com.br/33m63tk_1380435'
 
 // checklists de rotina e organizacao
 export const PRECO_CHECKLISTS = 9.90  // preco do kit de checklists, em reais
-export const LINK_CHECKLISTS = ''
+export const LINK_CHECKLISTS = 'https://pay.cakto.com.br/w6mdp7m_1380480'
 
 // contato
 export const WHATSAPP = '5549988198409'  // DDI + DDD + numero, so digitos (ex.: 5511999998888)
