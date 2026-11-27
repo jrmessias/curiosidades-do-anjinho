@@ -41,8 +41,8 @@ export const KITS = [
     temas: 'Tubarões, Vida Marinha, Peixes, Mamíferos Marinhos, Crustáceos e Moluscos.' },
   { id: 'bichos', link: LINK_BICHOS, titulo: 'Bichos do Mundo', cor: '#2b8a3e', capa: 'felinos', baralhos: 16, atividades: 451,
     temas: 'Felinos, Safári, Cães, Cobras, Aves, Pássaros, Répteis, Anfíbios, Aranhas, Insetos (2), Venenosos, Fazenda, Madagascar, Ártico e Antártida.' },
-  { id: 'veiculos', link: LINK_VEICULOS, titulo: 'Veículos e Máquinas', cor: '#c92a2a', capa: 'carros', baralhos: 10, atividades: 284,
-    temas: 'Carros, Aviões, Trens, Motos, Navios, Helicópteros, Máquinas Gigantes, Militares, Tanques e Caças e Aviões Militares.' },
+  { id: 'veiculos', link: LINK_VEICULOS, titulo: 'Veículos e Máquinas', cor: '#c92a2a', capa: 'carros', baralhos: 11, atividades: 312,
+    temas: 'Carros, Aviões, Trens, Motos, Navios, Helicópteros, Máquinas Gigantes, Militares, Tanques, Caças e Aviões Militares e Navios de Guerra.' },
   { id: 'ciencia', link: LINK_CIENCIA, titulo: 'Espaço e Ciência', cor: '#364fc7', capa: 'espaco', baralhos: 10, atividades: 283,
     temas: 'Espaço, Planetas e Luas, Foguetes, Inventores, Montanhas e Vulcões, Frutas, Vírus, Bactérias, Doenças da História e Pedras e Minerais.' },
   { id: 'mundo', link: LINK_MUNDO, titulo: 'Volta ao Mundo', cor: '#0c8599', capa: 'paises', baralhos: 12, atividades: 264,
@@ -53,7 +53,7 @@ export const KITS = [
     temas: 'Mitologia Grega, Nórdica, Egípcia e Criaturas Mitológicas.' },
 ]
 
-export const COMPLETA = { baralhos: 67, atividades: 1836 }
+export const COMPLETA = { baralhos: 68, atividades: 1864 }
 
 export const MATERIAIS = [
   ['bingo', 'Bingo', 'Sorteie o nome e marque a foto na cartela.', 'Cartelas de bingo com fotos de dinossauros'],
@@ -78,7 +78,7 @@ export const FAQ = [
   ['Os dados das cartas são reais?', 'Sim. Tamanhos, pesos, populações e datas vêm de fontes confiáveis, e cada carta traz uma curiosidade.'],
   ['Vai ter material novo?', 'Sim. A coleção não para de crescer: entram novos baralhos e atividades. Quem tem a Coleção Completa recebe as novidades sem pagar de novo. Os checklists, vendidos à parte, também ganham modelos novos, e quem comprou recebe sem pagar de novo.'],
   ['Achei um dado errado ou um problema no arquivo. O que faço?', 'Fale com a gente pelo botão do WhatsApp no canto da tela ou pelo link Fale com a gente, no rodapé. Vale para dado errado em alguma carta, problema para baixar ou arquivo que não abre ou não imprime direito. Corrigimos o arquivo.'],
-  ['O que tem de novo?', '27/11/2026: 19 checklists novos, em versão menino e menina, e agora os checklists são vendidos em 4 pacotes ou no Checklists Completo. Escola e casa: estojo, lição de casa, quarto arrumado, agenda da semana e cartões de rotina para a geladeira. Passeios: malas de praia, campo e frio, festa do pijama, piscina e clube, lancheira da semana. Hábitos e emoções: lavar as mãos, escovar os dentes, hora do banho, termômetro das emoções, antes do tablet, registro de leitura, segurança e banheiro público. Quem já comprou os checklists recebe tudo sem pagar de novo.'],
+  ['O que tem de novo?', '27/11/2026: 5 baralhos novos de Trunfo, cada um com todas as atividades do tema. Kit Veículos e Máquinas: Caças e Aviões Militares e Navios de Guerra. Kit Volta ao Mundo: Rios e Lagos. Kit Espaço e Ciência: Pedras e Minerais. Kit Brasil: Jiu-Jítsu Infantil. Quem tem o kit ou a Coleção Completa recebe sem pagar de novo. Também em 27/11/2026: 19 checklists novos, em versão menino e menina, e agora os checklists são vendidos em 4 pacotes ou no Checklists Completo. Escola e casa: estojo, lição de casa, quarto arrumado, agenda da semana e cartões de rotina para a geladeira. Passeios: malas de praia, campo e frio, festa do pijama, piscina e clube, lancheira da semana. Hábitos e emoções: lavar as mãos, escovar os dentes, hora do banho, termômetro das emoções, antes do tablet, registro de leitura, segurança e banheiro público. Quem já comprou os checklists recebe tudo sem pagar de novo.'],
   ['Qual é o formato dos arquivos?', 'PDF em tamanho A4, que abre no celular, no tablet e no computador.'],
 ]
 
