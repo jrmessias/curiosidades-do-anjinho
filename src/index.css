@@ -147,6 +147,8 @@ section.bloco{padding:84px 0}
 
 /* contato */
 footer a{color:var(--ouro)}
+.insta{display:inline-flex;align-items:center;gap:6px;font-weight:700;color:var(--ouro);text-underline-offset:3px}
+.fim .siga{margin:26px auto 0;font-size:15px}
 .contato{border:0;border-radius:24px;padding:0;width:min(480px,calc(100% - 32px));max-height:calc(100dvh - 32px);background:var(--creme-2);color:var(--tinta);box-shadow:0 30px 60px rgba(0,0,0,.35)}
 .contato[open]{animation:surge .35s cubic-bezier(.22,1,.36,1)}
 .contato::backdrop{background:rgba(26,18,48,.6);backdrop-filter:blur(3px)}
@@ -213,5 +215,6 @@ footer{background:#1a1230;color:rgba(244,234,213,.85);text-align:center;font-siz
   .chk p{font-size:16px}
   .folhas{gap:12px}
   .zap{width:54px;height:54px;right:16px;bottom:16px}
+  footer{padding-bottom:90px}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,.topo{transition:none}.aurora i,.oferta,.oferta .btn-ouro:after,.brilho,.zap:before,.contato[open]{animation:none}}
