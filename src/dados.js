@@ -13,9 +13,14 @@ export const LINK_BRASIL = 'https://pay.cakto.com.br/36fipda_1380426'
 export const LINK_MITOLOGIA = 'https://pay.cakto.com.br/vir8rtw_1380428'
 export const LINK_COMPLETA = 'https://pay.cakto.com.br/33m63tk_1380435'
 
-// checklists de rotina e organizacao
-export const PRECO_CHECKLISTS = 9.90  // preco do kit de checklists, em reais
-export const LINK_CHECKLISTS = 'https://pay.cakto.com.br/w6mdp7m_1380480'
+// checklists: 4 pacotes (PRECO_PACOTE_CHK cada) ou o Checklists Completo
+export const PRECO_PACOTE_CHK = 9.90   // preco de cada pacote de checklists, em reais
+export const PRECO_CHECKLISTS = 24.90  // preco do Checklists Completo, em reais
+export const LINK_CHECKLISTS = 'https://pay.cakto.com.br/w6mdp7m_1380480'  // Checklists Completo
+export const LINK_CHK_ROTINA = 'https://pay.cakto.com.br/39xs4hq_1381188'
+export const LINK_CHK_PASSEIOS = 'https://pay.cakto.com.br/688qnsh_1381207'
+export const LINK_CHK_HABITOS = 'https://pay.cakto.com.br/36c76m9_1381212'
+export const LINK_CHK_ESPORTES = 'https://pay.cakto.com.br/72u5hiz_1381215'
 
 // contato
 export const WHATSAPP = '5549988198409'  // DDI + DDD + numero, so digitos (ex.: 5511999998888)
@@ -73,12 +78,22 @@ export const FAQ = [
   ['Os dados das cartas são reais?', 'Sim. Tamanhos, pesos, populações e datas vêm de fontes confiáveis, e cada carta traz uma curiosidade.'],
   ['Vai ter material novo?', 'Sim. A coleção não para de crescer: entram novos baralhos e atividades. Quem tem a Coleção Completa recebe as novidades sem pagar de novo. Os checklists, vendidos à parte, também ganham modelos novos, e quem comprou recebe sem pagar de novo.'],
   ['Achei um dado errado ou um problema no arquivo. O que faço?', 'Fale com a gente pelo botão do WhatsApp no canto da tela ou pelo link Fale com a gente, no rodapé. Vale para dado errado em alguma carta, problema para baixar ou arquivo que não abre ou não imprime direito. Corrigimos o arquivo.'],
+  ['O que tem de novo?', '27/11/2026: 19 checklists novos, em versão menino e menina, e agora os checklists são vendidos em 4 pacotes ou no Checklists Completo. Escola e casa: estojo, lição de casa, quarto arrumado, agenda da semana e cartões de rotina para a geladeira. Passeios: malas de praia, campo e frio, festa do pijama, piscina e clube, lancheira da semana. Hábitos e emoções: lavar as mãos, escovar os dentes, hora do banho, termômetro das emoções, antes do tablet, registro de leitura, segurança e banheiro público. Quem já comprou os checklists recebe tudo sem pagar de novo.'],
   ['Qual é o formato dos arquivos?', 'PDF em tamanho A4, que abre no celular, no tablet e no computador.'],
 ]
 
-// saida/pdf/checklists: cada um em versao menino e menina
+// saida/pdf/checklists/<area>: cada checklist em versao menino e menina
 export const CHECKLISTS = {
-  itens: ['Rotina da manhã', 'Rotina da noite', 'Tarefas da semana', 'Mochila', 'Futebol', 'Vôlei', 'Basquete', 'Natação', 'Judô', 'Jiu-jítsu', 'Caratê', 'Balé', 'Patinação'],
+  pacotes: [
+    { id: 'rotina', link: LINK_CHK_ROTINA, titulo: 'Rotina e Organização', cor: '#1971c2',
+      itens: ['Rotina da manhã', 'Rotina da noite', 'Mochila', 'Estojo', 'Lição de casa', 'Quarto arrumado', 'Tarefas da semana', 'Agenda da semana', 'Cartões de rotina'] },
+    { id: 'passeios', link: LINK_CHK_PASSEIOS, titulo: 'Passeios e Ocasiões', cor: '#d9480f',
+      itens: ['Mala da praia', 'Mala do campo', 'Mala do frio', 'Festa do pijama', 'Piscina e clube', 'Lancheira da semana'] },
+    { id: 'habitos', link: LINK_CHK_HABITOS, titulo: 'Hábitos e Emoções', cor: '#2b8a3e',
+      itens: ['Lavar as mãos', 'Escovar os dentes', 'Hora do banho', 'Termômetro das emoções', 'Antes do tablet', 'Registro de leitura', 'Segurança', 'Banheiro público'] },
+    { id: 'esportes', link: LINK_CHK_ESPORTES, titulo: 'Esportes', cor: '#c2255c',
+      itens: ['Futebol', 'Natação', 'Judô', 'Jiu-jítsu', 'Caratê', 'Balé', 'Vôlei', 'Basquete', 'Patinação'] },
+  ],
   fotos: [
     ['rotina-manha-menina', 'Checklist da rotina da manhã com desenhos de cada passo'],
     ['tarefas-semana-menino', 'Quadro de tarefas da semana com bolinhas para pintar'],
